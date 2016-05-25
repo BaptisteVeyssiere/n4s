@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Tue May 24 17:35:38 2016 nathan scutari
-** Last update Tue May 24 18:48:58 2016 nathan scutari
+** Last update Wed May 25 16:54:15 2016 nathan scutari
 */
 
 #include <stdlib.h>
@@ -14,6 +14,7 @@
 int	nbr_length(double nbr)
 {
   int	save;
+  int	max;
   int	length;
 
   save = (int)nbr;
@@ -24,7 +25,8 @@ int	nbr_length(double nbr)
       length++;
     }
   length++;
-  while (nbr - (int)nbr > 0.0001)
+  max = -1;
+  while (nbr - (int)nbr > 0.0001 && ++max < 2)
     {
       nbr *= 10;
       nbr -= (int)nbr;
@@ -48,7 +50,10 @@ int	int_length(int nbr)
 
 void	deci_to_char(double nbr, char *result, int i)
 {
-  while (nbr - (int)nbr > 0.0001)
+  int	max;
+
+  max = -1;
+  while (nbr - (int)nbr > 0.0001 && ++max < 2)
     {
       nbr *= 10;
       result[++i] = ((int)nbr % 10) + 48;

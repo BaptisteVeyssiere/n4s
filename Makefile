@@ -5,7 +5,7 @@
 ## Login   <VEYSSI_B@epitech.net>
 ##
 ## Started on  Tue May 24 16:26:39 2016 Baptiste veyssiere
-## Last update Tue May 24 16:34:06 2016 Baptiste veyssiere
+## Last update Wed May 25 16:51:52 2016 nathan scutari
 ##
 
 NAME	= ia
@@ -22,7 +22,14 @@ SRCDIR	= src
 
 OBJDIR	= obj
 
-SRC	= src/main.c
+SRC	= src/main.c		\
+	  src/info_lidar.c	\
+	  src/get_next_line.c	\
+	  src/dtc.c		\
+	  src/tools.c		\
+	  src/my_getdouble.c	\
+	  src/my_memset.c	\
+	  src/verif_command.c
 
 OBJ	= $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
