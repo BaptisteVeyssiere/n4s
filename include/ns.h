@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Tue May 24 16:34:27 2016 Baptiste veyssiere
-** Last update Tue May 24 17:41:40 2016 Baptiste veyssiere
+** Last update Wed May 25 09:49:44 2016 ilyas semmaoui
 */
 
 #ifndef NS_H_
@@ -23,5 +23,20 @@ typedef struct	s_instruction_return
   char		check_fail;
   char		additionnal_info;
 }		t_instruction_return;
+
+
+/*
+** info_lidar.c
+*/
+static int	take_info_lidar(t_info_lidar *, char *);
+int		info_lidar(t_info_lidar *, char *);
+
+/*
+** verif_command.c
+*/
+int		verif_command_one(char *);
+int		verif_command_two(char *);
+int		verif_command_three(char *);
+int		verif_command_four(char *);
 
 #endif /* !NS_H_ */
