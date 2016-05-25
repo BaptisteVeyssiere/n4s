@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Tue May 24 16:34:27 2016 Baptiste veyssiere
-** Last update Wed May 25 20:41:18 2016 ilyas semmaoui
+** Last update Wed May 25 21:02:22 2016 ilyas semmaoui
 */
 
 #ifndef NS_H_
@@ -52,10 +52,10 @@ int	my_memset(char *, int, int);
 /*
 ** verif_command.c
 */
-int		verif_command_one(char *);
-int		verif_command_two(char *);
-int		verif_command_three(char *);
-int		verif_command_four(char *);
+int		verif_command_one(t_info_lidar *, char *);
+int		verif_command_two(t_info_lidar *, char *);
+int		verif_command_three(t_info_lidar *, char *);
+int		verif_command_four(t_info_lidar *, char *);
 
 /*
 ** my_getdouble.c

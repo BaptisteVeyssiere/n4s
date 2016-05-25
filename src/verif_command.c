@@ -5,17 +5,20 @@
 ** Login   <semmao_i@epitech.net>
 **
 ** Started on  Wed May 25 09:40:30 2016 ilyas semmaoui
-** Last update Wed May 25 18:12:37 2016 nathan scutari
+** Last update Wed May 25 21:03:08 2016 ilyas semmaoui
 */
 
-#include <stdio.h>
-#include <unistd.h>
+#include "ns.h"
 
-int	verif_command_one(char *str)
+int	verif_command_one(t_info_lidar *lidar, char *str)
 {
   int	i;
   char	buff[] = "1:OK:No errors so far:";
 
+  if (strnmatch(str, "Track Cleared") == 1)
+    lidar->additionnal_info = 4;
+  else
+    lidar->additionnal_info = 0;
   i = -1;
   while (str && str[++i] && buff[i])
     if (str[i] != buff[i])
@@ -25,13 +28,16 @@ int	verif_command_one(char *str)
   return (0);
 }
 
-int	verif_command_two(char *str)
+int	verif_command_two(t_info_lidar *lidar, char *str)
 {
   int	i;
   int	count;
   char	buff[] = "1:OK:No errors so far:";
 
-  i = -1;
+  if ((i = -1) == -1 && strnmatch(str, "Track Cleared") == 1)
+    lidar->additionnal_info = 4;
+  else
+    lidar->additionnal_info = 0;
   count = 0;
   while (str && str[++i] && buff[i])
     if (str[i] != buff[i])
@@ -51,11 +57,15 @@ int	verif_command_two(char *str)
   return (0);
 }
 
-int	verif_command_three(char *str)
+int	verif_command_three(t_info_lidar *lidar, char *str)
 {
   int	i;
   char	buff[] = "1:OK:No errors so far:";
 
+  if (strnmatch(str, "Track Cleared") == 1)
+    lidar->additionnal_info = 4;
+  else
+    lidar->additionnal_info = 0;
   i = -1;
   while (str && str[++i] && buff[i])
     if (str[i] != buff[i])
@@ -71,11 +81,15 @@ int	verif_command_three(char *str)
   return (0);
 }
 
-int	verif_command_four(char *str)
+int	verif_command_four(t_info_lidar *lidar, char *str)
 {
   int	i;
   char	buff[] = "1:OK:No errors so far:";
 
+  if (strnmatch(str, "Track Cleared") == 1)
+    lidar->additionnal_info = 4;
+  else
+    lidar->additionnal_info = 0;
   i = -1;
   while (str && str[++i] && buff[i])
     if (str[i] != buff[i])

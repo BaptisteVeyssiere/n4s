@@ -5,12 +5,12 @@
 ** Login   <semmao_i@epitech.net>
 **
 ** Started on  Wed May 25 08:00:12 2016 ilyas semmaoui
-** Last update Wed May 25 20:41:57 2016 ilyas semmaoui
+** Last update Wed May 25 21:01:47 2016 ilyas semmaoui
 */
 
 #include "ns.h"
 
-int	(*verif_command[])(char *str) =
+int	(*verif_command[])(t_info_lidar *lidar, char *str) =
 {
   verif_command_one,
   verif_command_two,
@@ -41,11 +41,7 @@ int	take_info_lidar(t_info_lidar *lidar, char *str)
 
 int	info_lidar(t_info_lidar *lidar, char *str)
 {
-  if (strnmatch(str, "Track Cleared") == 1)
-    lidar->additionnal_info = 4;
-  else
-    lidar->additionnal_info = 0;
-  if (verif_command[1](str) == -1)
+  if (verif_command[1](lidar, str) == -1)
     {
       lidar->check_fail = 1;
       return (-1);
