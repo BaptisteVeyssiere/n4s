@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Tue May 24 16:35:01 2016 Baptiste veyssiere
-** Last update Wed May 25 20:55:35 2016 nathan scutari
+** Last update Wed May 25 21:17:31 2016 nathan scutari
 */
 
 #include <stdio.h>
@@ -54,13 +54,13 @@ int		manage_speed(t_info_lidar *lid)
   double	distance;
   int		i;
 
-  i = 9;
+  i = 12;
   distance = 0;
-  while (++i < 22)
+  while (++i < 19)
     distance += lid->lidar[i];
-  distance /= 12;
-  speed = ((distance - 100) * 0.8) / (2910) + 0.2;
-  if (distance < 250)
+  distance /= 6;
+  speed = ((distance - 100) * 0.7) / (2910) + 0.2;
+  if (distance < 200)
     speed = 0;
   if ((value = double_to_char(speed)) == NULL)
     return (1);
@@ -95,7 +95,7 @@ int		turn_left(t_info_lidar *lid)
   while (++i < 18)
     distance += lid->lidar[i];
   distance /= 4;
-  dir = 0.7 - (distance * 0.7) / 1200;
+  dir = 0.6 - (distance * 0.6) / 900;
   if (dir < 0)
     dir = 0;
   if ((value = double_to_char(dir)) == NULL)
@@ -129,7 +129,7 @@ int		turn_right(t_info_lidar *lid)
   while (++i < 18)
     distance += lid->lidar[i];
   distance /= 4;
-  dir = 0.7 - (distance * 0.7) / 1200;
+  dir = 0.7 - (distance * 0.7) / 900;
   if (dir < 0)
     dir = 0;
   if ((value = double_to_char(dir)) == NULL)
@@ -179,14 +179,12 @@ int	manage_stabilisation(t_info_lidar *lid)
     return (send_command("car_forward:", 0));
   else if (lid->lidar[0] < 250)
     {
-      if (send_command("car_forward:", 0.1) ||
-	  send_command("wheels_dir:-", 0.04))
+      if (send_command("wheels_dir:-", 0.05))
 	return (1);
     }
   else if (lid->lidar[31] < 250)
     {
-      if (send_command("car_forward:", 0.1) ||
-	  send_command("wheels_dir:", 0.04))
+      if (send_command("wheels_dir:", 0.05))
 	return (1);
     }
   return (0);
@@ -197,15 +195,15 @@ int	start_driving(t_info_lidar *lid)
   char	buff[501];
   int	ret;
 
-  while (lid->additional_info != 4)
+  while (1)
     {
       write(1, "get_info_lidar\n", 15);
       ret = read(0, buff, 500);
       buff[ret] = 0;
       if (info_lidar(lid, buff) == -1 ||
 	  manage_speed(lid) ||
-	  manage_dir(lid) ||
-	  manage_stabilisation(lid))
+	  manage_dir(lid))
+	/*	  manage_stabilisation(lid)*/
 	return (1);
     }
   return (0);
