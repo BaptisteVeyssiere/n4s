@@ -5,17 +5,15 @@
 ** Login   <semmao_i@epitech.net>
 ** 
 ** Started on  Wed May 25 09:40:30 2016 ilyas semmaoui
-** Last update Wed May 25 09:43:00 2016 ilyas semmaoui
+** Last update Wed May 25 17:03:09 2016 ilyas semmaoui
 */
 
 int	verif_command_one(char *str)
 {
   int	i;
-  int	count;
   char	buff[] = "1:OK:No errors so far:";
 
   i = -1;
-  count = 0;
   while (str && str[++i] && buff[i])
     if (str[i] != buff[i])
       return (-1);
@@ -56,11 +54,9 @@ int	verif_command_two(char *str)
 int	verif_command_three(char *str)
 {
   int	i;
-  int	count;
   char	buff[] = "1:OK:No errors so far:";
 
   i = -1;
-  count = 0;
   while (str && str[++i] && buff[i])
     if (str[i] != buff[i])
       return (-1);
@@ -78,11 +74,9 @@ int	verif_command_three(char *str)
 int	verif_command_four(char *str)
 {
   int	i;
-  int	count;
   char	buff[] = "1:OK:No errors so far:";
 
   i = -1;
-  count = 0;
   while (str && str[++i] && buff[i])
     if (str[i] != buff[i])
       return (-1);

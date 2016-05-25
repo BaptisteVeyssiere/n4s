@@ -5,7 +5,7 @@
 ** Login   <semmao_i@epitech.net>
 ** 
 ** Started on  Wed May 25 08:00:12 2016 ilyas semmaoui
-** Last update Wed May 25 16:57:35 2016 ilyas semmaoui
+** Last update Wed May 25 16:59:45 2016 ilyas semmaoui
 */
 
 #include "ns.h"
@@ -41,9 +41,6 @@ static int	take_info_lidar(t_info_lidar *lidar, char *str)
 
 int	info_lidar(t_info_lidar *lidar, char *str)
 {
-  int	i;
-
-  i = -1;
   if (verif_command[1](str) == -1)
     {
       lidar->check_fail = 1;
