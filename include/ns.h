@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Tue May 24 16:34:27 2016 Baptiste veyssiere
-** Last update Wed May 25 20:41:18 2016 ilyas semmaoui
+** Last update Thu May 26 15:50:23 2016 nathan scutari
 */
 
 #ifndef NS_H_
@@ -17,6 +17,11 @@ typedef struct	s_info_lidar
   char		additionnal_info;
   double	speed;
   double	wheels;
+  double	olda;
+  double	oldb;
+  int		memory;
+  int		warning;
+  int		turn;
   double	lidar[32];
 }		t_info_lidar;
 
@@ -52,10 +57,10 @@ int	my_memset(char *, int, int);
 /*
 ** verif_command.c
 */
-int		verif_command_one(char *);
-int		verif_command_two(char *);
-int		verif_command_three(char *);
-int		verif_command_four(char *);
+int		verif_command_one(t_info_lidar *, char *);
+int		verif_command_two(t_info_lidar *, char *);
+int		verif_command_three(t_info_lidar *, char *);
+int		verif_command_four(t_info_lidar *, char *);
 
 /*
 ** my_getdouble.c
