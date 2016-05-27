@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Tue May 24 16:35:01 2016 Baptiste veyssiere
-** Last update Thu May 26 16:44:17 2016 nathan scutari
+** Last update Fri May 27 16:07:29 2016 nathan scutari
 */
 
 #include <stdio.h>
@@ -58,10 +58,8 @@ int		manage_speed(t_info_lidar *lid)
   while (++i < 19)
     distance += lid->lidar[i];
   distance /= 6;
-  speed = ((distance - 100) * 0.7) / (2910) + 0.2;
-  if (distance >= 100 && distance < 400)
-    speed = 0.1;
-  else if (distance < 100)
+  speed = ((distance - 200) * 0.7) / (2810) + 0.2;
+  if (distance < 200)
     speed = 0;
   if (speed < 0)
     speed = 0;
@@ -89,8 +87,13 @@ int		turn_left(t_info_lidar *lid)
   dir = 0.7 - (distance * 0.7) / 1000;
   if (dir < 0)
     dir = 0;
-  if (dir != lid->wheels)
-    lid->wheels = dir;
+  if (lid->lidar[0] > 400)
+    {
+      if (dir != lid->wheels)
+	lid->wheels = dir;
+    }
+  else
+    lid->wheels = 0;
   return (0);
 }
 
@@ -108,8 +111,15 @@ int		turn_right(t_info_lidar *lid)
   dir = 0.7 - (distance * 0.7) / 1000;
   if (dir < 0)
     dir = 0;
-    if (dir != lid->wheels)
-      lid->wheels = dir;
+  if (lid->lidar[31] > 400)
+    {
+      if (dir != lid->wheels)
+	{
+	  lid->wheels = dir;
+	}
+    }
+  else
+    lid->wheels = 0;
   return (0);
 }
 
@@ -218,8 +228,24 @@ int	try_backwards(t_info_lidar *lid)
   return (0);
 }
 
+int	manage_close_turn(t_info_lidar *lid)
+{
+  if (lid->lidar[0] < 400 && lid->turn == 1 && lid->wheels >= 0.1)
+    {
+      lid->warning = 1;
+      return (send_command("wheels_dir:-", 0.1, lid));
+    }
+  else if (lid->lidar[31] < 400 && lid->turn == 2 && lid->wheels >= 0.1)
+    {
+      lid->warning = 1;
+      return (send_command("wheels_dir:", 0.1, lid));
+    }
+  return (0);
+}
+
 int	start_driving(t_info_lidar *lid)
 {
+  char	*value;
   char	buff[501];
   int	ret;
 
@@ -231,12 +257,14 @@ int	start_driving(t_info_lidar *lid)
       if (info_lidar(lid, buff) == -1 ||
 	  manage_speed(lid) ||
 	  manage_dir(lid) ||
-	  manage_stabilisation(lid))
+	  manage_stabilisation(lid) ||
+	  manage_close_turn(lid))
 	return (1);
       if (lid->warning == 0 && change_dir(lid))
 	return (1);
       lid->warning = 0;
-      if (lid->speed < 0.05 && try_backwards(lid))
+      value = double_to_char(lid->speed);
+      if (lid->speed < 0.1 && try_backwards(lid))
 	return (1);
     }
   return (0);
