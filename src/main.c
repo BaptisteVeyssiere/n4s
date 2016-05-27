@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Tue May 24 16:35:01 2016 Baptiste veyssiere
-** Last update Fri May 27 16:07:29 2016 nathan scutari
+** Last update Fri May 27 22:48:51 2016 Baptiste veyssiere
 */
 
 #include <stdio.h>
@@ -245,7 +245,7 @@ int	manage_close_turn(t_info_lidar *lid)
 
 int	start_driving(t_info_lidar *lid)
 {
-  char	*value;
+  /* char	*value; */
   char	buff[501];
   int	ret;
 
@@ -263,7 +263,7 @@ int	start_driving(t_info_lidar *lid)
       if (lid->warning == 0 && change_dir(lid))
 	return (1);
       lid->warning = 0;
-      value = double_to_char(lid->speed);
+      /* value = double_to_char(lid->speed); */
       if (lid->speed < 0.1 && try_backwards(lid))
 	return (1);
     }
