@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Tue May 24 16:34:27 2016 Baptiste veyssiere
-** Last update Thu May 26 15:50:23 2016 nathan scutari
+** Last update Sun May 29 16:51:36 2016 nathan scutari
 */
 
 #ifndef NS_H_
@@ -13,6 +13,7 @@
 
 typedef struct	s_info_lidar
 {
+  char		try;
   char		check_fail;
   char		additionnal_info;
   double	speed;
@@ -25,18 +26,24 @@ typedef struct	s_info_lidar
   double	lidar[32];
 }		t_info_lidar;
 
-typedef struct	s_instruction_return
-{
-  char		check_fail;
-  char		additionnal_info;
-}		t_instruction_return;
-
-
 /*
 ** info_lidar.c
 */
 int	info_lidar(t_info_lidar *, char *);
 int	take_info_lidar(t_info_lidar *, char *);
+
+/*
+** turns.c
+*/
+int	manage_dir(t_info_lidar *);
+
+
+/*
+** commands.c
+*/
+int	stop_sim();
+int	send_command(char *, double, t_info_lidar *);
+int	init_simulation(t_info_lidar *);
 
 /*
 ** tools.c
@@ -68,5 +75,11 @@ int		verif_command_four(t_info_lidar *, char *);
 void		my_getd(const char *, double *);
 void		get_db(const char *, double, double *);
 int		multd(const char *, double *, int);
+
+/*
+** close_act.c
+*/
+int	try_backwards(t_info_lidar *);
+int	manage_close_turn(t_info_lidar *);
 
 #endif /* !NS_H_ */

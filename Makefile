@@ -5,7 +5,7 @@
 ## Login   <VEYSSI_B@epitech.net>
 ##
 ## Started on  Tue May 24 16:26:39 2016 Baptiste veyssiere
-## Last update Wed May 25 16:51:52 2016 nathan scutari
+## Last update Sun May 29 16:51:55 2016 nathan scutari
 ##
 
 NAME	= ia
@@ -23,6 +23,9 @@ SRCDIR	= src
 OBJDIR	= obj
 
 SRC	= src/main.c		\
+	  src/close_act.c	\
+	  src/turns.c		\
+	  src/commands.c	\
 	  src/info_lidar.c	\
 	  src/get_next_line.c	\
 	  src/dtc.c		\
